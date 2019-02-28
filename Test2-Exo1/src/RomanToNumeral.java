@@ -12,13 +12,26 @@ public class RomanToNumeral {
 		this.Ci.put("M", 1000);
 	}
 	
-	public int getNumeral(String chiffre) {
+	public int getNumeral(String nombre) {
 		int res = 0;
-		for (int i = 0; i<=chiffre.length()-1; i++) {
-			System.out.println(chiffre.charAt(i));
+		for (int i = 0; i<=nombre.length()-1; i++) {
+			System.out.println(nombre.charAt(i));
+			String lettre = nombre.charAt(i)+"";
+			int chiffre = this.Ci.get(lettre);
+			String lettreSuivante = nombre.charAt(i+1)+"";
+			int chiffreSuivant = this.Ci.get(lettreSuivante);
+			
+			//Conditions
+			if (chiffre >= chiffreSuivant) {
+				res += chiffre;
+			}
+			else {
+				res += chiffreSuivant-chiffre;
+			}	
 		}
 		return res;
 	}
+	
 	
 	public static void main(String[] args) {
 		RomanToNumeral test = new RomanToNumeral();
